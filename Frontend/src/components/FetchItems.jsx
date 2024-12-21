@@ -18,18 +18,18 @@ const FetchItems = () => {
 
     // Determine the base URL based on the hostname
     const baseURL =
-      window.location.hostname === "localhost"
-        ? "http://localhost:8080"
-        : "https://fashionfushion-backend.onrender.com";
+      // window.location.hostname === "localhost"
+      //   ? "http://localhost:8080"
+      //   : "https://fashionfushion-backend.onrender.com";
 
-    fetch(`${baseURL}/items`, { signal })
-      .then((res) => res.json())
-      .then(({ items }) => {
-        dispatch(fetchStatusActions.markFetchDone());
+      fetch(`https://fashionfushion-backend.onrender.com/items`, { signal })
+        .then((res) => res.json())
+        .then(({ items }) => {
+          dispatch(fetchStatusActions.markFetchDone());
 
-        dispatch(fetchStatusActions.markFetchingFinished());
-        dispatch(itemActions.addInitialItems(items));
-      });
+          dispatch(fetchStatusActions.markFetchingFinished());
+          dispatch(itemActions.addInitialItems(items));
+        });
 
     return () => {
       controller.abort();
